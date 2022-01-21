@@ -19,6 +19,12 @@ contract Casino {
    function kill() public {
       if(msg.sender == owner) selfdestruct(owner);
    }
+    function checkPlayerExists(address player) public constant returns(bool){
+      for(uint256 i = 0; i < players.length; i++){
+         if(players[i] == player) return true;
+      }
+      return false;
+   }
 
    // To bet for a number between 1 and 10 both inclusive
    function bet(uint256 numberSelected) public payable {
